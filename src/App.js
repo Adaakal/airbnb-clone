@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable array-callback-return */
+import React from "react"
+import Navbar from "./components/Navbar"
+import Hero from "./components/Hero"
+import Card from "./components/Card"
+import data from "./data"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App() {
+    const cardData = data.map(data => {
+        return <Card
+
+            img={data.coverImg}
+            rating={data.stats.rating}
+            reviewCount={data.stats.reviewCount}
+            location={data.location}
+            title={data.title}
+            price={data.price}
+            openSpots={data.openSpots}
+        />
+    })
+
+    return (
+        <div>
+            <Navbar />
+            <Hero />
+            <section className="cards-list">
+                {cardData}
+            </section>
+        </div>
+    )
 }
-
-export default App;
